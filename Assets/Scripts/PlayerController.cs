@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,6 +28,15 @@ public class PlayerController : MonoBehaviour
         //transform.Translate(Time.deltaTime * Vector3.right * turnSpeed * horizontalInput);
         SwitchCamera();
 
+
+        if(transform.position.z > 180)
+        {
+            SceneManager.LoadScene(0);
+        }
+        if (transform.position.y < -1)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     void ControlVehicle()
@@ -45,6 +55,11 @@ public class PlayerController : MonoBehaviour
         {
             mainCamera.enabled = !mainCamera.enabled;
             hoodCamera.enabled = !hoodCamera.enabled;
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+            
         }
     }
 }
