@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Camera hoodCamera;
     [SerializeField] public KeyCode switchKey = KeyCode.F;
+
+    public string inputID;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,8 +43,8 @@ public class PlayerController : MonoBehaviour
 
     void ControlVehicle()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal" + inputID);
+        verticalInput = Input.GetAxis("Vertical" + inputID);
         Vector3 aceleracao = Time.deltaTime * Vector3.forward * speed * verticalInput;
         transform.Translate(aceleracao);
         transform.Rotate(Vector3.up, Time.deltaTime * turnSpeed * horizontalInput);
